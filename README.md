@@ -2,7 +2,7 @@
 
 # Aplikasi Saweria dengan Protokol UDP-WEBSOCKET dan TCP-WEBSOCKET
 
-Repository ini berisi kode sumber untuk aplikasi manajemen Saweria yang dibangun menggunakan **Golang** untuk backend dan **HTML** untuk frontend. Aplikasi ini mendukung kedua protokol **UDP-WEBSOCKET** dan **TCP-WEBSOCKET** untuk komunikasi.
+Repository ini berisi kode sumber untuk aplikasi Saweria yang dibangun menggunakan **Golang** untuk backend dan **HTML** untuk frontend. Aplikasi ini mendukung kedua protokol **UDP-WEBSOCKET** dan **TCP-WEBSOCKET** untuk komunikasi.
 
 ## Fitur
 - **UDP-WEBSOCKET**: Digunakan untuk komunikasi cepat tanpa koneksi.
