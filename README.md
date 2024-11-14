@@ -22,7 +22,7 @@ Repository ini berisi kode sumber untuk aplikasi Saweria yang dibangun menggunak
 
 ### 1. Clone repository:
 ```bash
-git clone https://github.com/username-anda/saweria-app.git
+git clone https://github.com/louisukdc/Aplikasi-Saweria-Cuan.git
 cd saweria-app
 
 
