@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Donasi</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+  <div class="container mx-auto">
+    <h1 class="text-3xl font-bold text-center mb-6">Daftar Donasi</h1>
+    <div id="donations" class="space-y-4">
+      <!-- Data donasi akan ditampilkan di sini -->
+    </div>
+  </div>
+
+  <script>
+    const wsURL = "ws://localhost:8084/ws"; // URL WebSocket server
+    const donationsContainer = document.getElementById("donations");
+
+    // Membuat koneksi WebSocket
+    const socket = new WebSocket(wsURL);
+
+    // Log saat koneksi terbuka
+    socket.addEventListener("open", function() {
+      console.log("Terhubung ke WebSocket server.");
+    });
+
+    // Fungsi untuk menambahkan donasi ke dalam tampilan
+    function addDonation(donation) {
+      console.log("Menambahkan donasi:", donation); // Log data donasi yang diterima
+      const donationElement = document.createElement("div");
+      donationElement.classList.add("bg-white", "p-4", "rounded-lg", "shadow", "text-gray-800");
+
+      donationElement.innerHTML = `
+        <p><strong>Nama:</strong> ${donation.from}</p>
+        <p><strong>Jumlah Donasi:</strong> Rp ${donation.amount.toFixed(2)}</p>
+        <p><strong>Pesan:</strong> ${donation.message}</p>
+      `;
+      donationsContainer.prepend(donationElement);
+    }
+
+    // Mendengarkan pesan yang diterima dari WebSocket
+    socket.addEventListener("message", function(event) {
+      console.log("Pesan diterima:", event.data); // Log pesan mentah yang diterima dari server
+      const donation = JSON.parse(event.data);
+      addDonation(donation);
+    });
+
+    // Menangani error koneksi
+    socket.addEventListener("error", function(event) {
+      console.error("WebSocket error:", event);
+    });
+
+    // Menangani koneksi yang terputus
+    socket.addEventListener("close", function(event) {
+      console.log("WebSocket connection closed:", event);
+    });
+  </script>
+</body>
+</html>
